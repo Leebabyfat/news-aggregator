@@ -78,15 +78,12 @@ a {
 }
 
 .header__title {
-  font-size: 40px;
-  font-weight: 400;
   padding: 0;
   margin: 0;
 }
 
 .header__subhead {
   font-size: 20px;
-  font-weight: 400;
   padding: 0;
   margin: 0;
   opacity: 0.54;
@@ -289,7 +286,6 @@ main.loading {
 .story-details__close {
   width: 48px;
   height: 48px;
-  position: absolute;
   left: 16px;
   top: 50%;
   margin-top: -48px;
@@ -302,10 +298,8 @@ main.loading {
 .story-details__meta {
   background: #FFC107;
   height: 40px;
-  position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
   padding-left: 72px;
   line-height: 40px;
   color: rgba(0,0,0,0.57);
@@ -343,7 +337,6 @@ main.loading {
 footer {
   font-size: 13px;
   height: 40px;
-  background: #ececec;
   color: #888;
   text-align: center;
   line-height: 40px;

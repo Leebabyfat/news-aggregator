@@ -94,7 +94,7 @@ APP.Main = (function() {
     var storyDetails = $('sd-' + details.id);
 
     // Wait a little time then show the story details.
-    setTimeout(showStory.bind(this, details.id), 60);
+    requestAnimationFrame(showStory.bind(this, details.id));
 
     // Create and append the story. A visual change...
     // perhaps that should be in a requestAnimationFrame?
@@ -191,7 +191,7 @@ APP.Main = (function() {
 
       // Set up the next bit of the animation if there is more to do.
       if (Math.abs(left) > 0.5)
-        setTimeout(animate, 4);
+        requestAnimationFrame(animate);
       else
         left = 0;
 
@@ -204,7 +204,7 @@ APP.Main = (function() {
     // every few milliseconds. That's going to keep
     // it all tight. Or maybe we're doing visual changes
     // and they should be in a requestAnimationFrame
-    setTimeout(animate, 4);
+    requestAnimationFrame(animate);
   }
 
   function hideStory(id) {
@@ -230,7 +230,7 @@ APP.Main = (function() {
 
       // Set up the next bit of the animation if there is more to do.
       if (Math.abs(left - target) > 0.5) {
-        setTimeout(animate, 4);
+        requestAnimationFrame(animate);
       } else {
         left = target;
         inDetails = false;
@@ -245,7 +245,7 @@ APP.Main = (function() {
     // every few milliseconds. That's going to keep
     // it all tight. Or maybe we're doing visual changes
     // and they should be in a requestAnimationFrame
-    setTimeout(animate, 4);
+    requestAnimationFrame(animate);
   }
 
   /**
@@ -254,15 +254,15 @@ APP.Main = (function() {
    */
   function colorizeAndScaleStories() {
 
-    var storyElements = document.querySelectorAll('.story');
+    var storyElements = document.getElementsByClassName('.story');
 
     // It does seem awfully broad to change all the
     // colors every time!
+    var score = story.querySelector('.story__score');
+    var title = story.querySelector('.story__title');
     for (var s = 0; s < storyElements.length; s++) {
 
       var story = storyElements[s];
-      var score = story.querySelector('.story__score');
-      var title = story.querySelector('.story__title');
 
       // Base the scale on the y position of the score.
       var height = main.offsetHeight;
@@ -294,7 +294,7 @@ APP.Main = (function() {
     }
 
   });
-
+//查看函数调用是否合理
   main.addEventListener('scroll', function() {
 
     var header = $('header');
@@ -302,7 +302,6 @@ APP.Main = (function() {
     var scrollTopCapped = Math.min(70, main.scrollTop);
     var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
 
-    colorizeAndScaleStories();
 
     header.style.height = (156 - scrollTopCapped) + 'px';
     headerTitles.style.webkitTransform = scaleString;
